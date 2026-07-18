@@ -1,0 +1,6 @@
+{
+  "name": "Game Ludo Multiplayer",
+  "description": "Game Ludo real-time multiplayer dengan lobi room, komputer AI bot, dan live komentar pertandingan dari Google Gemini AI dalam Bahasa Indonesia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

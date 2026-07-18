@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", "Arial Black", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+  --color-brand-orange: #FF7F11;
+  --color-brand-cyan: #0EA5E9;
+  --color-brand-dark: #FFFDF6;
+  --color-brand-grid: #FFF9ED;
+}
+
+body {
+  background-color: var(--color-brand-dark);
+  color: #1E293B;
+  font-family: var(--font-sans);
+}
+
+/* Playful, vibrant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFDF6;
+}
+::-webkit-scrollbar-thumb {
+  background: #FF7F11;
+  border-radius: 9999px;
+  border: 2px solid #FFFDF6;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0EA5E9;
+}
+
