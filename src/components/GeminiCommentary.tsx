@@ -115,17 +115,24 @@ export const GeminiCommentary: React.FC<GeminiCommentaryProps> = ({
   };
 
   // Automatically trigger Indonesian voice whenever a new AI commentary lands
+  const lastSpokenMsgIdRef = useRef<string | null>(null);
+  
   useEffect(() => {
     if (chatHistory.length === 0) return;
     const latestMsg = chatHistory[chatHistory.length - 1];
     
     // Check if the latest message is indeed from "Bung Ludo" (system AI)
     if (latestMsg.senderName.includes('Bung Ludo') && !isMuted) {
-      // Small delay for natural feel after board animations
-      const timer = setTimeout(() => {
-        handleVoicePlayback(latestMsg.message);
-      }, 300);
-      return () => clearTimeout(timer);
+      // Only speak if this specific message hasn't been spoken yet
+      if (lastSpokenMsgIdRef.current !== latestMsg.id) {
+        lastSpokenMsgIdRef.current = latestMsg.id;
+        
+        // Small delay for natural feel after board animations
+        const timer = setTimeout(() => {
+          handleVoicePlayback(latestMsg.message);
+        }, 300);
+        return () => clearTimeout(timer);
+      }
     }
   }, [chatHistory, isMuted]);
 

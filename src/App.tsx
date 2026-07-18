@@ -676,10 +676,7 @@ export default function App() {
           isConnecting={isConnecting}
           connectionError={connectionError}
         />
-        
-        <footer className="py-6 text-center border-t-4 border-[#333] bg-slate-950 text-xs text-slate-500 font-mono uppercase tracking-widest">
-          // © 2026 Ludo Bung AI • All rights reserved //
-        </footer>
+
       </div>
     );
   }

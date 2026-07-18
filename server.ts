@@ -925,9 +925,23 @@ async function startServer() {
     console.log('Serving production static assets from:', distPath);
   }
 
-  server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Express server running on http://localhost:${PORT}`);
+  const startListening = (port: number) => {
+    server.listen(port, '0.0.0.0', () => {
+      console.log(`Express server running on http://localhost:${port}`);
+    });
+  };
+
+  server.on('error', (err: any) => {
+    if (err.code === 'EADDRINUSE') {
+      const failedPort = err.port;
+      console.log(`Port ${failedPort} is in use, trying ${failedPort + 1}...`);
+      setTimeout(() => startListening(failedPort + 1), 100);
+    } else {
+      console.error('Server error:', err);
+    }
   });
+
+  startListening(PORT);
 }
 
 startServer();
