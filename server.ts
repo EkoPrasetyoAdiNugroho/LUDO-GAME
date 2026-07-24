@@ -134,7 +134,7 @@ function broadcastToRoom(roomId: string, message: ServerMessage) {
 /**
  * Trigger Gemini AI Commentary and broadcast to room
  */
-async function triggerAICommentary(eventDescription: string, state: GameState, delayMs: number = 500) {
+async function triggerAICommentary(eventDescription: string, state: GameState, delayMs: number = 500, isExtraordinary: boolean = false) {
   setTimeout(async () => {
     try {
       const commentary = await generateAICommentary(eventDescription, state);
@@ -149,6 +149,7 @@ async function triggerAICommentary(eventDescription: string, state: GameState, d
         senderName: '🎙️ Bung Ludo',
         message: commentary,
         timestamp: Date.now(),
+        isExtraordinary,
       };
       state.chatHistory.push(systemMessage);
       if (state.chatHistory.length > 50) state.chatHistory.shift();
@@ -293,7 +294,7 @@ async function processBotTurnsIfNeeded(roomId: string) {
     const winnerPlayer = currentState.players.find(p => p.color === winner);
     currentState.lastActionDescription = `🏆 PERTANDINGAN SELESAI! ${winnerPlayer ? winnerPlayer.name : winner.toUpperCase()} ADALAH PEMENANGNYA!`;
     broadcastToRoom(roomId, { type: 'state_update', state: currentState });
-    triggerAICommentary(`Permainan selesai! ${winnerPlayer ? winnerPlayer.name : winner} telah memenangkan game Ludo! Semua bidaknya sudah finish!`, currentState, 200);
+    triggerAICommentary(`Permainan selesai! ${winnerPlayer ? winnerPlayer.name : winner} telah memenangkan game Ludo! Semua bidaknya sudah finish!`, currentState, 200, true);
     return;
   }
 
@@ -322,9 +323,9 @@ async function processBotTurnsIfNeeded(roomId: string) {
     
     // AI commentary for exciting events
     if (captures.length > 0) {
-      triggerAICommentary(`${activePlayer.name} baru saja memakan bidak lawan dan mendapat bonus giliran!`, currentState);
+      triggerAICommentary(`${activePlayer.name} baru saja memakan bidak lawan dan mendapat bonus giliran!`, currentState, 500, true);
     } else if (roll === 6) {
-      triggerAICommentary(`${activePlayer.name} mendapat dadu angka 6 dan berhak melempar dadu lagi!`, currentState);
+      triggerAICommentary(`${activePlayer.name} mendapat dadu angka 6 dan berhak melempar dadu lagi!`, currentState, 500, true);
     }
   } else {
     // Pass turn
@@ -340,7 +341,7 @@ async function processBotTurnsIfNeeded(roomId: string) {
 
     // AI commentary for a standard progress/capture
     if (captures.length > 0) {
-      triggerAICommentary(`${activePlayer.name} menyantap bidak lawan tanpa ampun!`, currentState);
+      triggerAICommentary(`${activePlayer.name} menyantap bidak lawan tanpa ampun!`, currentState, 500, true);
     }
   }
 
@@ -745,7 +746,7 @@ wss.on('connection', (ws: WebSocket, request) => {
             const winnerPlayer = state.players.find(p => p.color === winner);
             state.lastActionDescription = `🏆 PERTANDINGAN SELESAI! ${winnerPlayer ? winnerPlayer.name : winner.toUpperCase()} MENANG MUTLAK!`;
             broadcastToRoom(currentRoomId, { type: 'state_update', state });
-            triggerAICommentary(`Luar biasa! Bidak terakhir sudah finish. ${winnerPlayer ? winnerPlayer.name : winner} resmi menjadi raja Ludo hari ini! Beri tepuk tangan!`, state, 200);
+            triggerAICommentary(`Luar biasa! Bidak terakhir sudah finish. ${winnerPlayer ? winnerPlayer.name : winner} resmi menjadi raja Ludo hari ini! Beri tepuk tangan!`, state, 200, true);
             return;
           }
 
@@ -774,11 +775,11 @@ wss.on('connection', (ws: WebSocket, request) => {
             
             // Commentary reactions
             if (captures.length > 0) {
-              triggerAICommentary(`${currentPlayer.name} memakan bidak milik lawan dan dapet bonus giliran kocokan!`, state);
+              triggerAICommentary(`${currentPlayer.name} memakan bidak milik lawan dan dapet bonus giliran kocokan!`, state, 500, true);
             } else if (roll === 6) {
-              triggerAICommentary(`${currentPlayer.name} dapet angka 6 dan dapet kesempatan melempar dadu lagi!`, state);
+              triggerAICommentary(`${currentPlayer.name} dapet angka 6 dan dapet kesempatan melempar dadu lagi!`, state, 500, true);
             } else if (newPos === 56) {
-              triggerAICommentary(`${currentPlayer.name} berhasil memasukkan bidak ke garis finish dan berhak jalan lagi!`, state);
+              triggerAICommentary(`${currentPlayer.name} berhasil memasukkan bidak ke garis finish dan berhak jalan lagi!`, state, 500, true);
             }
           } else {
             // Standard pass turn
@@ -794,7 +795,7 @@ wss.on('connection', (ws: WebSocket, request) => {
 
             // AI commentary for normal capture/turn transition
             if (captures.length > 0) {
-              triggerAICommentary(`Bidak dicaplok tanpa belas kasihan oleh ${currentPlayer.name}!`, state);
+              triggerAICommentary(`Bidak dicaplok tanpa belas kasihan oleh ${currentPlayer.name}!`, state, 500, true);
             }
           }
 

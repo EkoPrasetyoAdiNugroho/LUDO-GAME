@@ -123,8 +123,12 @@ export const GeminiCommentary: React.FC<GeminiCommentaryProps> = ({
     
     // Check if the latest message is indeed from "Bung Ludo" (system AI)
     if (latestMsg.senderName.includes('Bung Ludo') && !isMuted) {
-      // Only speak if this specific message hasn't been spoken yet
-      if (lastSpokenMsgIdRef.current !== latestMsg.id) {
+      // Filter: Only speak when extraordinary events happen (Win, Capture, Rolling a 6)
+      const isExtraordinaryEvent = 
+        latestMsg.isExtraordinary === true ||
+        /menang|pemenang|juara|memakan|menyantap|caplok|makan|angka 6|dadu 6|dapet 6|dapat 6|finish/i.test(latestMsg.message);
+
+      if (isExtraordinaryEvent && lastSpokenMsgIdRef.current !== latestMsg.id) {
         lastSpokenMsgIdRef.current = latestMsg.id;
         
         // Small delay for natural feel after board animations

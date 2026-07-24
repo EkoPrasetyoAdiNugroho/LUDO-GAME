@@ -22,6 +22,7 @@ export interface ChatMessage {
   senderColor?: PlayerColor;
   message: string;
   timestamp: number;
+  isExtraordinary?: boolean;
 }
 
 export interface GameState {
