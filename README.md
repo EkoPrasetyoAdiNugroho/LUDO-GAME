@@ -9,13 +9,6 @@ Play Ludo locally against computer bots or create an online room and play with o
 🎮 **Play LUDO GAME:**
 👉 https://ludo-game-seven-theta.vercel.app/
 
-## 📂 GitHub Repository
-
-💻 **Source Code:**
-👉 https://github.com/EkoPrasetyoAdiNugroho/LUDO-GAME
-
----
-
 ## ✨ Features
 
 ### 🎮 Local Game
