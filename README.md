@@ -1,286 +1,166 @@
 # 🎲 LUDO GAME
 
-A modern web-based Ludo game with **local multiplayer, AI bots, online multiplayer, real-time chat, animations, sound effects, and AI-powered game commentary**.
+A modern **real-time multiplayer Ludo game** built with **React, TypeScript, Vite, Node.js, WebSocket, and Google Gemini AI**.
 
-Built with **React, TypeScript, Vite, WebSocket, Express, and Google Gemini**.
+Play Ludo locally against computer bots or create an online room and play with other players in real time. The game also includes **AI-powered commentary, sound effects, background music, and an in-game chat system**.
+
+## 🌐 Live Demo
+
+🎮 **Play LUDO GAME:**
+👉 https://ludo-game-seven-theta.vercel.app/
+
+## 📂 GitHub Repository
+
+💻 **Source Code:**
+👉 https://github.com/EkoPrasetyoAdiNugroho/LUDO-GAME
 
 ---
 
-## 🎮 Features
+## ✨ Features
 
-### 🏠 Local Game
+### 🎮 Local Game
 
-* Play Ludo locally without requiring other players.
-* Add computer-controlled opponents.
-* Support up to **4 players**.
-* Bot difficulty levels:
+* Play Ludo directly in your browser
+* Play against up to 3 computer opponents
+* Multiple bot difficulty levels:
 
-  * 🟢 Easy
-  * 🟡 Medium
-  * 🔴 Hard
+  * Easy
+  * Medium
+  * Hard
+* No internet connection is required for local gameplay
 
 ### 🌐 Online Multiplayer
 
-* Create an online game room.
-* Join a room using a unique room code.
-* Real-time game synchronization using **WebSocket**.
-* Supports up to **4 players** in one room.
-* Automatic reconnection when the connection is temporarily lost.
-* Online bots are processed server-side.
+* Create a multiplayer room
+* Join rooms using a room code
+* Support for up to 4 players
+* Real-time synchronization using WebSocket
+* Player connection status
+* Bot support in online rooms
+* Real-time multiplayer gameplay
 
-### 🤖 AI Bot
+### 🤖 AI Commentary
 
-Computer opponents can make decisions based on the selected difficulty level.
+* Powered by **Google Gemini AI**
+* Generates dynamic commentary based on game events
+* Reacts to events such as:
 
-The bot evaluates available moves and selects a token to move according to the current game state.
-
-### 🎙️ AI Ludo Commentary
-
-The game includes an AI-powered commentator using **Google Gemini**.
-
-The commentator can react to events such as:
-
-* 🎲 Dice rolls
-* 🍖 Capturing opponent tokens
-* ⭐ Getting bonus turns
-* 🏆 Winning the match
-* 🔥 Other important game events
-
-If the Gemini API is unavailable, the game automatically falls back to local commentary.
+  * Rolling a 6
+  * Capturing an opponent
+  * Reaching the finish
+  * Winning the game
+* Includes fallback commentary when Gemini is unavailable
 
 ### 💬 Real-Time Chat
 
-Players can communicate with each other through the in-game chat system.
+* Chat with other players during online matches
+* Messages are synchronized in real time
+* Room-based chat system
 
-### 🔊 Audio System
+### 🔊 Audio & Effects
 
+* Dice rolling sound effects
 * Background music
-* Dice roll sound effects
-* Victory sound effects
+* Victory sounds
 * Sound effects toggle
-* Background music toggle
+* Music toggle
+* Victory animations and confetti
 
-### 🎨 Interactive UI
+### 🎨 Modern UI
 
-* Animated game components
-* Animated dice
-* Token movement
-* Victory celebration
-* Confetti effects
-* Responsive game interface
-* Lucide icons
-* Motion animations
-
----
-
-## 🕹️ Game Rules
-
-The game follows the basic mechanics of Ludo.
-
-### Dice
-
-Players roll a six-sided dice to determine how many spaces a token can move.
-
-### Starting a Token
-
-Tokens start inside their home area.
-
-A token can enter the board when the required condition is met according to the game rules.
-
-### Capturing
-
-If a player's token lands on an opponent's token at a capturable position, the opponent's token is sent back to its home area.
-
-### Bonus Turn
-
-Players can receive another dice roll after certain actions, including:
-
-* Rolling a **6**
-* Capturing an opponent's token
-* Reaching the final position
-
-### Three Consecutive Sixes
-
-Rolling six three times consecutively causes the current turn to be cancelled and passed to the next player.
-
-### Winning
-
-A player wins when all of their tokens successfully reach the final position.
+* Responsive design
+* Animated interface
+* Interactive Ludo board
+* Player status indicators
+* Game event log
+* Rules panel
+* Connection status
+* Modern icons and visual effects
 
 ---
 
-## 🧠 Game Architecture
+## 🛠️ Tech Stack
 
-The project supports two main gameplay modes.
+| Technology           | Purpose                             |
+| -------------------- | ----------------------------------- |
+| **React**            | User interface                      |
+| **TypeScript**       | Type safety and application logic   |
+| **Vite**             | Frontend development and build tool |
+| **Node.js**          | Backend runtime                     |
+| **WebSocket**        | Real-time multiplayer               |
+| **Google Gemini AI** | AI game commentary                  |
+| **Motion**           | UI animations                       |
+| **Lucide React**     | Icons                               |
+| **Tailwind CSS**     | Styling                             |
+| **ESBuild**          | Server bundling                     |
+
+---
+
+## 🎯 Game Modes
+
+### 🖥️ Local Mode
+
+Play against computer-controlled opponents.
 
 ```text
-                    ┌─────────────────┐
-                    │   LUDO GAME     │
-                    └────────┬────────┘
-                             │
-              ┌──────────────┴──────────────┐
-              │                             │
-       ┌──────▼──────┐               ┌──────▼──────┐
-       │ Local Mode  │               │ Online Mode │
-       └──────┬──────┘               └──────┬──────┘
-              │                             │
-       ┌──────▼──────┐               ┌──────▼──────┐
-       │ Bot Engine  │               │  WebSocket  │
-       └──────┬──────┘               └──────┬──────┘
-              │                             │
-              │                      ┌──────▼──────┐
-              │                      │   Express    │
-              │                      │    Server    │
-              │                      └──────┬──────┘
-              │                             │
-              │                      ┌──────▼──────┐
-              │                      │ Game Rooms  │
-              │                      └─────────────┘
-              │
-              └──────────────┬──────────────┘
-                             │
-                    ┌────────▼────────┐
-                    │   Game Logic    │
-                    └────────┬────────┘
-                             │
-                    ┌────────▼────────┐
-                    │ Gemini AI       │
-                    │ Commentary      │
-                    └─────────────────┘
+You
+ │
+ ├── Bot
+ ├── Bot
+ └── Bot
 ```
 
----
+Choose your preferred difficulty and start playing immediately.
 
-## 🛠️ Technologies
+### 🌍 Online Multiplayer
 
-| Technology            | Purpose                             |
-| --------------------- | ----------------------------------- |
-| **React**             | User interface                      |
-| **TypeScript**        | Type-safe application development   |
-| **Vite**              | Frontend development and build tool |
-| **Express**           | Backend HTTP server                 |
-| **WebSocket (`ws`)**  | Real-time multiplayer communication |
-| **Google Gemini API** | AI game commentary                  |
-| **Motion**            | UI and game animations              |
-| **Lucide React**      | Interface icons                     |
-| **Tailwind CSS**      | UI styling                          |
-| **esbuild**           | Server bundling                     |
-| **tsx**               | Running TypeScript server code      |
-
-The project currently uses React 19, TypeScript 5.8, Vite 6, Express 4, WebSocket, Motion, and the Google GenAI SDK.
-
----
-
-## 📂 Project Structure
+Play against real players through an online room.
 
 ```text
-LUDO-GAME/
-│
-├── assets/
-│   └── .aistudio
-│
-├── public/
-│   └── assets/
-│       └── sounds/
-│
-├── src/
-│   ├── components/
-│   │   ├── ConfettiCelebration.tsx
-│   │   ├── GameControls.tsx
-│   │   ├── GeminiCommentary.tsx
-│   │   ├── LudoBoard.tsx
-│   │   └── LudoLobby.tsx
-│   │
-│   ├── gameLogic.ts
-│   ├── types.ts
-│   ├── App.tsx
-│   └── main.tsx
-│
-├── .env.example
-├── .gitignore
-├── index.html
-├── metadata.json
-├── package.json
-├── server.ts
-├── tsconfig.json
-├── vite.config.ts
-└── README.md
+Player 1 ──┐
+Player 2 ──┼── WebSocket ──> Game Server
+Player 3 ──┤
+Player 4 ──┘
 ```
-
-The repository contains separate frontend components, game logic, a TypeScript server, WebSocket functionality, and game audio assets.
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-
-Make sure you have installed:
-
-* [Node.js](https://nodejs.org/)
-* npm
-
-You can also use Bun because the repository includes a `bun.lock` file.
-
----
-
-### 1. Clone Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/EkoPrasetyoAdiNugroho/LUDO-GAME.git
-```
-
-```bash
 cd LUDO-GAME
 ```
 
----
-
-### 2. Install Dependencies
-
-Using npm:
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-Or using Bun:
+### Configure Gemini AI
 
-```bash
-bun install
-```
-
----
-
-### 3. Configure Environment Variables
-
-Create a `.env` file based on `.env.example`.
+Create an environment file and add your Gemini API key:
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
-The Gemini API key is used by the server to generate AI-powered Ludo commentary. If the key is unavailable, the application uses fallback commentary.
+> ⚠️ Never commit your API key to GitHub.
 
-> **Important:** Never commit your real API key to GitHub.
-
----
-
-### 4. Run Development Server
+### Run the Development Server
 
 ```bash
 npm run dev
 ```
 
-The project uses `tsx server.ts` for its development command.
-
-Then open the local address displayed by the development server in your browser.
+Then open the local URL shown in your terminal.
 
 ---
 
-## 🏗️ Production Build
-
-Create a production build:
+## 📦 Production Build
 
 ```bash
 npm run build
@@ -292,158 +172,96 @@ Start the production server:
 npm start
 ```
 
-Preview the Vite production build:
+---
 
-```bash
-npm run preview
-```
+## 🎮 How to Play
 
-TypeScript checking:
+### Local Game
 
-```bash
-npm run lint
-```
+1. Open the game.
+2. Select **Local Game**.
+3. Select the number of bot opponents.
+4. Choose the bot difficulty.
+5. Start the match.
+6. Roll the dice.
+7. Move your pieces strategically.
+8. Capture opponents and reach the finish first.
 
-These commands are defined in the project's `package.json`.
+### Online Multiplayer
+
+1. Select **Online Multiplayer**.
+2. Enter your player name.
+3. Create a room.
+4. Share the room code.
+5. Other players join using the room code.
+6. Start the game.
+7. Play together in real time.
 
 ---
 
-## 🌐 Multiplayer System
-
-The online multiplayer mode uses a WebSocket connection.
+## 🏗️ Project Architecture
 
 ```text
-Player 1
-   │
-   │ WebSocket
-   ▼
-┌───────────────┐
-│ Express + WS  │
-│    Server     │
-└───────┬───────┘
-        │
-        │ Game State
-        ▼
-┌───────────────┐
-│  Room Manager │
-└───────┬───────┘
-        │
-   ┌────┴────┐
-   ▼         ▼
-Player 2   Player 3
+                 ┌─────────────────────┐
+                 │      LUDO GAME      │
+                 │   React + TypeScript│
+                 └──────────┬──────────┘
+                            │
+              ┌─────────────┴─────────────┐
+              │                           │
+              ▼                           ▼
+       ┌──────────────┐            ┌───────────────┐
+       │  Local Mode  │            │  Online Mode  │
+       └──────┬───────┘            └───────┬───────┘
+              │                            │
+              ▼                            ▼
+        Game State                  WebSocket Server
+                                           │
+                                           ▼
+                                    Multiplayer Room
+                                           │
+                                           ▼
+                                      Game State
+                                           │
+                                           ▼
+                                        Players
+
+                         ┌─────────────────────┐
+                         │   Google Gemini AI  │
+                         │   Game Commentary   │
+                         └─────────────────────┘
 ```
 
-Players can:
+---
 
-* Create rooms
-* Join rooms
-* Start games
-* Roll dice
-* Move tokens
-* Add/remove bots
-* Send chat messages
-* Restart games
+## ⚠️ Notes
 
-The server maintains game rooms in memory and broadcasts game-state updates to connected players.
+The online multiplayer system uses an in-memory room system. Active room data may be lost when the server restarts.
+
+The application requires a WebSocket-compatible server environment for multiplayer functionality.
+
+AI commentary requires a valid Gemini API key. Without it, fallback commentary can be used.
 
 ---
 
-## 🤖 Bot Difficulty
-
-Bots can be configured with three difficulty levels:
-
-```text
-Easy
-  ↓
-Medium
-  ↓
-Hard
-```
-
-The bot system uses the current game state, available moves, dice value, token positions, and selected difficulty to determine which token should be moved.
-
----
-
-## 🎙️ Gemini AI Commentary
-
-The AI commentator is powered by Google's Gemini API.
-
-Example events that can trigger commentary:
-
-```text
-Player rolls a 6
-        ↓
-Bonus turn
-        ↓
-Gemini generates commentary
-        ↓
-Commentary broadcast to room
-        ↓
-Displayed in game chat/commentator UI
-```
-
-The server sends the current game information and recent event to Gemini to generate short, humorous Indonesian commentary.
-
----
-
-## 🔐 Security Notes
-
-* Keep `GEMINI_API_KEY` inside environment variables.
-* Do not upload `.env` files containing secrets.
-* The current multiplayer server stores rooms **in memory**.
-* Restarting the server will clear active rooms and game sessions.
-
----
-
-## 📌 Current Limitations
-
-* Game rooms are stored in server memory.
-* Active rooms are lost when the server restarts.
-* Multiplayer requires a running WebSocket server.
-* Gemini commentary requires a valid Gemini API key for AI-generated responses.
-* The project is currently designed as a web-based game rather than a persistent account-based multiplayer platform.
-
----
-
-## 🔮 Future Improvements
-
-Possible future improvements:
-
-* [ ] Persistent database for game rooms
-* [ ] User accounts and authentication
-* [ ] Player statistics
-* [ ] Leaderboards
-* [ ] Match history
-* [ ] Spectator mode
-* [ ] More advanced AI bots
-* [ ] Mobile optimization
-* [ ] Custom player avatars
-* [ ] Private/invite-only rooms
-* [ ] Improved anti-cheat validation
-* [ ] Persistent online profiles
-* [ ] Deployment with scalable WebSocket infrastructure
-
----
-
-## 👨‍💻 Author
+## 👨‍💻 Developer
 
 **Eko Prasetyo Adi Nugroho**
 
-Universitas Muhammadiyah Makassar
-Teknik Informatika
-
 GitHub:
 https://github.com/EkoPrasetyoAdiNugroho
+
+Repository:
+https://github.com/EkoPrasetyoAdiNugroho/LUDO-GAME
 
 ---
 
 ## 📄 License
 
-This project contains source code licensed under the **Apache License 2.0**. See the source files and repository for the applicable license information.
+This project was created for **educational and academic purposes**.
 
 ---
 
-⭐ If you find this project interesting, consider giving the repository a star!
+## ⭐ LUDO GAME
 
-**Repository:**
-https://github.com/EkoPrasetyoAdiNugroho/LUDO-GAME
+> **Roll the dice. Move your pieces. Capture your rivals. Rule the board.** 🎲🏆
