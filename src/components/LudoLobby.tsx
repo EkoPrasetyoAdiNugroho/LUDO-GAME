@@ -80,7 +80,7 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 flex flex-col justify-center min-h-[90vh] items-center relative">
+    <div className="max-w-4xl mx-auto p-3 sm:p-6 flex flex-col justify-center min-h-[85vh] sm:min-h-[90vh] items-center relative w-full">
       {/* BACKGROUND GRAPHIC GLOW */}
       <div className="absolute inset-0 bg-gradient-to-b from-amber-50 via-sky-50 to-amber-50/30 z-[-2] pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(#0EA5E9_1px,transparent_1px),linear-gradient(90deg,#0EA5E9_1px,transparent_1px)] bg-[size:40px_40px] z-[-1] pointer-events-none" />
@@ -89,21 +89,21 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="text-center mb-8 flex flex-col items-center"
+        className="text-center mb-5 sm:mb-8 flex flex-col items-center"
       >
-        <div className="relative w-24 h-24 bg-white rounded-3xl border-4 border-slate-900 flex items-center justify-center shadow-[6px_6px_0px_rgba(255,127,17,1)] mb-6">
-          <Gamepad2 size={48} className="text-brand-orange" />
-          <div className="absolute -top-1 -left-1 w-6 h-6 bg-red-500 border-2 border-slate-900 rounded-full" />
-          <div className="absolute -top-1 -right-1 w-6 h-6 bg-yellow-500 border-2 border-slate-900 rounded-full" />
-          <div className="absolute -bottom-1 -left-1 w-6 h-6 bg-emerald-500 border-2 border-slate-900 rounded-full" />
-          <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 border-2 border-slate-900 rounded-full" />
+        <div className="relative w-16 h-16 sm:w-24 sm:h-24 bg-white rounded-2xl sm:rounded-3xl border-3 sm:border-4 border-slate-900 flex items-center justify-center shadow-[4px_4px_0px_rgba(255,127,17,1)] sm:shadow-[6px_6px_0px_rgba(255,127,17,1)] mb-4 sm:mb-6">
+          <Gamepad2 size={36} className="sm:w-12 sm:h-12 text-brand-orange" />
+          <div className="absolute -top-1 -left-1 w-4 h-4 sm:w-6 sm:h-6 bg-red-500 border-2 border-slate-900 rounded-full" />
+          <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-yellow-500 border-2 border-slate-900 rounded-full" />
+          <div className="absolute -bottom-1 -left-1 w-4 h-4 sm:w-6 sm:h-6 bg-emerald-500 border-2 border-slate-900 rounded-full" />
+          <div className="absolute -bottom-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-blue-500 border-2 border-slate-900 rounded-full" />
         </div>
         
-        <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-none font-sans mb-3 drop-shadow-sm">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-slate-900 tracking-tighter uppercase leading-none font-sans mb-2 sm:mb-3 drop-shadow-sm">
           LUDO <span className="text-brand-orange text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-red-500">BUNG</span> <span className="text-brand-cyan text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-blue-500">AI</span>
         </h1>
         
-        <p className="text-slate-600 text-xs font-mono max-w-lg uppercase tracking-wider leading-relaxed border-t-2 border-dashed border-slate-300 pt-3">
+        <p className="text-slate-600 text-[10px] sm:text-xs font-mono max-w-lg uppercase tracking-wider leading-relaxed border-t-2 border-dashed border-slate-300 pt-2 sm:pt-3">
           ✨ MULTIPLAYER REAL-TIME SYSTEM // POWERED BY GEMINI COMMENTARY ✨
         </p>
       </motion.div>
@@ -114,62 +114,62 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-3xl shadow-[10px_10px_0px_0px_rgba(255,127,17,1)] p-6 md:p-10 flex flex-col md:flex-row gap-8"
+          className="w-full max-w-3xl bg-white border-2 sm:border-4 border-slate-900 rounded-2xl sm:rounded-3xl shadow-[6px_6px_0px_0px_rgba(255,127,17,1)] sm:shadow-[10px_10px_0px_0px_rgba(255,127,17,1)] p-4 sm:p-6 md:p-10 flex flex-col md:flex-row gap-6 md:gap-8"
         >
           {/* Main Controls Panel */}
-          <div className="flex-1 flex flex-col gap-6 justify-center">
-            <h3 className="text-2xl font-black text-slate-900 tracking-tight uppercase flex items-center gap-2 border-b-4 border-brand-orange pb-2">
-              <Users size={22} className="text-brand-orange" /> ATUR NAMA PEMAIN
+          <div className="flex-1 flex flex-col gap-4 sm:gap-6 justify-center">
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight uppercase flex items-center gap-2 border-b-2 sm:border-b-4 border-brand-orange pb-2">
+              <Users size={20} className="sm:w-[22px] sm:h-[22px] text-brand-orange" /> ATUR NAMA PEMAIN
             </h3>
 
             {/* Connection errors inside entry selection */}
             {connectionError && (
-              <div className="bg-red-50 border-2 border-red-500 text-red-700 text-xs py-3 px-4 rounded-2xl font-bold font-sans flex items-center gap-2 uppercase tracking-wide">
+              <div className="bg-red-50 border-2 border-red-500 text-red-700 text-xs py-2.5 px-3.5 rounded-xl font-bold font-sans flex items-center gap-2 uppercase tracking-wide">
                 <span className="w-2 h-2 bg-red-600 rounded-full animate-ping" />
                 ERROR: {connectionError}
               </div>
             )}
 
             {isConnecting && (
-              <div className="bg-amber-50 border-2 border-brand-orange text-slate-900 text-xs py-3 px-4 rounded-2xl font-sans font-black flex items-center gap-2 uppercase tracking-wider">
-                <span className="w-2.5 h-2.5 bg-brand-orange rounded-full animate-ping" />
+              <div className="bg-amber-50 border-2 border-brand-orange text-slate-900 text-xs py-2.5 px-3.5 rounded-xl font-sans font-black flex items-center gap-2 uppercase tracking-wider">
+                <span className="w-2 h-2 bg-brand-orange rounded-full animate-ping" />
                 MENGHUBUNGKAN KE SERVER LUDO...
               </div>
             )}
             
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-mono text-slate-700 font-bold uppercase tracking-widest">NAMA IDENTITAS</label>
+            <div className="flex flex-col gap-1.5 sm:gap-2">
+              <label className="text-[10px] sm:text-xs font-mono text-slate-700 font-bold uppercase tracking-widest">NAMA IDENTITAS</label>
               <input
                 type="text"
                 placeholder="MASUKKAN NAMA ANDA..."
                 value={playerName}
                 onChange={(e) => setPlayerName(e.target.value)}
                 maxLength={15}
-                className="w-full bg-amber-50/50 border-4 border-slate-900 focus:border-brand-cyan text-slate-900 rounded-2xl py-3.5 px-4 outline-none font-sans font-black text-sm transition-all shadow-[inset_3px_3px_0px_rgba(0,0,0,0.05)] uppercase placeholder-slate-400"
+                className="w-full bg-amber-50/50 border-2 sm:border-4 border-slate-900 focus:border-brand-cyan text-slate-900 rounded-xl sm:rounded-2xl py-2.5 sm:py-3.5 px-3 sm:px-4 outline-none font-sans font-black text-xs sm:text-sm transition-all shadow-[inset_3px_3px_0px_rgba(0,0,0,0.05)] uppercase placeholder-slate-400"
               />
             </div>
 
             {/* Quick Choice Grid */}
-            <div className="flex flex-col gap-4 mt-2">
+            <div className="flex flex-col gap-3 sm:gap-4 mt-1">
               <button
                 onClick={handleCreateClick}
                 disabled={!playerName.trim()}
-                className={`py-4 px-6 rounded-2xl font-black text-md uppercase tracking-wider shadow-[4px_4px_0px_#000] border-4 border-slate-900 transition-all flex items-center justify-center gap-2.5 ${
+                className={`py-3 sm:py-4 px-4 sm:px-6 rounded-xl sm:rounded-2xl font-black text-sm sm:text-md uppercase tracking-wider shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] border-2 sm:border-4 border-slate-900 transition-all flex items-center justify-center gap-2 ${
                   playerName.trim()
                     ? 'bg-brand-orange text-white hover:bg-amber-400 hover:text-slate-900 active:translate-y-1 active:shadow-none cursor-pointer'
                     : 'bg-slate-100 text-slate-400 border-slate-300 shadow-none cursor-not-allowed'
                 }`}
               >
-                <UserPlus size={18} /> BUAT LOBI MULTIPLAYER
+                <UserPlus size={16} className="sm:w-[18px] sm:h-[18px]" /> BUAT LOBI MULTIPLAYER
               </button>
 
-              <div className="relative flex items-center justify-center my-2">
+              <div className="relative flex items-center justify-center my-1">
                 <hr className="border border-slate-200 w-full" />
-                <span className="absolute bg-white px-4 text-xs text-slate-500 font-mono font-bold">// ATAU //</span>
+                <span className="absolute bg-white px-3 text-[10px] sm:text-xs text-slate-500 font-mono font-bold">// ATAU //</span>
               </div>
 
               {/* Join Room Form */}
-              <form onSubmit={handleJoinClick} className="flex gap-3">
+              <form onSubmit={handleJoinClick} className="flex flex-col xs:flex-row gap-2 sm:gap-3">
                 <input
                   type="text"
                   placeholder="KODE"
@@ -177,12 +177,12 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
                   onChange={(e) => setRoomCodeInput(e.target.value.toUpperCase())}
                   maxLength={6}
                   disabled={!playerName.trim()}
-                  className="w-32 text-center bg-amber-50/50 border-4 border-slate-900 focus:border-brand-cyan text-slate-900 font-sans font-black uppercase rounded-2xl py-3 outline-none text-base placeholder-slate-400 disabled:opacity-50"
+                  className="w-full xs:w-28 sm:w-32 text-center bg-amber-50/50 border-2 sm:border-4 border-slate-900 focus:border-brand-cyan text-slate-900 font-sans font-black uppercase rounded-xl sm:rounded-2xl py-2.5 sm:py-3 outline-none text-sm sm:text-base placeholder-slate-400 disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={!playerName.trim() || !roomCodeInput.trim()}
-                  className={`flex-1 py-3 px-6 rounded-2xl font-black text-sm uppercase tracking-wider border-4 border-slate-900 shadow-[4px_4px_0px_#000] flex items-center justify-center gap-2 transition-all ${
+                  className={`w-full xs:flex-1 py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm uppercase tracking-wider border-2 sm:border-4 border-slate-900 shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] flex items-center justify-center gap-2 transition-all ${
                     playerName.trim() && roomCodeInput.trim()
                       ? 'bg-brand-cyan text-white hover:bg-sky-400 hover:text-slate-900 active:translate-y-1 cursor-pointer'
                       : 'bg-slate-100 text-slate-400 border-slate-300 shadow-none cursor-not-allowed'
@@ -195,14 +195,14 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
             
             <button
               onClick={onEnterLocalMode}
-              className="py-3 px-4 rounded-2xl font-black uppercase tracking-wider text-brand-cyan hover:text-slate-900 bg-sky-50 border-4 border-dashed border-brand-cyan hover:border-brand-orange hover:bg-amber-50 transition-all text-xs text-center cursor-pointer mt-2"
+              className="py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl sm:rounded-2xl font-black uppercase tracking-wider text-brand-cyan hover:text-slate-900 bg-sky-50 border-2 sm:border-4 border-dashed border-brand-cyan hover:border-brand-orange hover:bg-amber-50 transition-all text-[11px] sm:text-xs text-center cursor-pointer mt-1"
             >
               🎮 MAIN MODE LOKAL (PASS & PLAY / VS BOT)
             </button>
           </div>
 
           {/* Right Info Section */}
-          <div className="w-full md:w-72 bg-amber-50/30 rounded-2xl border-4 border-slate-900 p-6 flex flex-col justify-between">
+          <div className="w-full md:w-72 bg-amber-50/30 rounded-xl sm:rounded-2xl border-2 sm:border-4 border-slate-900 p-4 sm:p-6 flex flex-col justify-between">
             <div>
               <h4 className="text-sm font-sans font-black text-brand-orange uppercase tracking-widest flex items-center gap-1.5 mb-4 border-b-2 border-brand-orange/30 pb-1">
                 <Info size={15} /> CARA BERMAIN LUDO
@@ -243,29 +243,29 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-3xl shadow-[10px_10px_0px_0px_rgba(255,127,17,1)] p-6 md:p-10 flex flex-col gap-6"
+          className="w-full max-w-3xl bg-white border-2 sm:border-4 border-slate-900 rounded-2xl sm:rounded-3xl shadow-[6px_6px_0px_0px_rgba(255,127,17,1)] sm:shadow-[10px_10px_0px_0px_rgba(255,127,17,1)] p-4 sm:p-6 md:p-10 flex flex-col gap-4 sm:gap-6"
         >
           {/* Room Header Info */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b-4 border-slate-200">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 border-b-2 sm:border-b-4 border-slate-200">
             <div>
-              <span className="text-xs font-mono font-bold text-brand-cyan uppercase tracking-widest">// LOBI MULTIPLAYER READY //</span>
-              <h2 className="text-3xl font-black text-slate-950 uppercase tracking-tight mt-1">
+              <span className="text-[10px] sm:text-xs font-mono font-bold text-brand-cyan uppercase tracking-widest">// LOBI MULTIPLAYER READY //</span>
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-950 uppercase tracking-tight mt-0.5 sm:mt-1">
                 UNDANG KONTESAN
               </h2>
             </div>
 
             {/* Room Code Code Copy */}
-            <div className="bg-amber-50/40 border-4 border-slate-900 rounded-2xl p-4 flex items-center justify-between gap-6">
+            <div className="bg-amber-50/40 border-2 sm:border-4 border-slate-900 rounded-xl sm:rounded-2xl p-3 sm:p-4 flex items-center justify-between gap-4 sm:gap-6">
               <div className="flex flex-col">
-                <span className="text-[10px] font-mono font-bold text-slate-500 tracking-wider">KODE ROOM LUDO</span>
-                <span className="text-3xl font-sans font-black text-brand-orange tracking-widest">{gameState.roomId}</span>
+                <span className="text-[9px] sm:text-[10px] font-mono font-bold text-slate-500 tracking-wider">KODE ROOM LUDO</span>
+                <span className="text-2xl sm:text-3xl font-sans font-black text-brand-orange tracking-widest">{gameState.roomId}</span>
               </div>
               <button
                 onClick={handleCopyCode}
-                className="w-12 h-12 bg-brand-orange text-white font-black rounded-xl flex items-center justify-center transition-all cursor-pointer hover:bg-amber-400 border-2 border-slate-900 shadow-[3px_3px_0px_#000] active:translate-y-0.5"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-brand-orange text-white font-black rounded-lg sm:rounded-xl flex items-center justify-center transition-all cursor-pointer hover:bg-amber-400 border-2 border-slate-900 shadow-[2px_2px_0px_#000] sm:shadow-[3px_3px_0px_#000] active:translate-y-0.5 shrink-0"
                 title="Salin Kode Lobi"
               >
-                {copied ? <Check size={22} className="text-slate-950 stroke-[3]" /> : <Copy size={22} className="stroke-[3]" />}
+                {copied ? <Check size={18} className="text-slate-950 stroke-[3]" /> : <Copy size={18} className="stroke-[3]" />}
               </button>
             </div>
           </div>
@@ -323,24 +323,24 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
             </div>
 
             {/* Right: AI Bot Panel Config */}
-            <div className="bg-amber-50/20 border-4 border-slate-900 p-5 rounded-2xl flex flex-col justify-between shadow-[4px_4px_0px_rgba(0,0,0,0.05)]">
+            <div className="bg-amber-50/20 border-2 sm:border-4 border-slate-900 p-4 sm:p-5 rounded-xl sm:rounded-2xl flex flex-col justify-between shadow-[3px_3px_0px_rgba(0,0,0,0.05)] sm:shadow-[4px_4px_0px_rgba(0,0,0,0.05)]">
               <div>
-                <h4 className="text-sm font-sans font-black text-brand-cyan uppercase tracking-wider flex items-center gap-1.5 mb-3 border-b-2 border-brand-cyan/20 pb-1">
-                  <Bot size={16} className="text-brand-cyan" /> HUBUNGKAN BOT KOMPUTER
+                <h4 className="text-xs sm:text-sm font-sans font-black text-brand-cyan uppercase tracking-wider flex items-center gap-1.5 mb-2 sm:mb-3 border-b-2 border-brand-cyan/20 pb-1">
+                  <Bot size={15} className="text-brand-cyan" /> HUBUNGKAN BOT KOMPUTER
                 </h4>
-                <p className="text-xs text-slate-600 leading-relaxed mb-4 font-sans font-medium">
+                <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed mb-3 sm:mb-4 font-sans font-medium">
                   Isi slot kosong dengan bot AI. Mereka diprogram dengan kalkulasi taktis untuk menghalangi jalan kemenangan Anda!
                 </p>
 
                 {/* Difficulty Selector */}
-                <div className="flex flex-col gap-2 mb-4">
-                  <label className="text-[10px] font-mono text-slate-600 font-bold uppercase tracking-widest">TINGKAT INTELEGENSI BOT</label>
-                  <div className="grid grid-cols-3 gap-2 bg-slate-100 border-2 border-slate-200 p-1 rounded-xl">
+                <div className="flex flex-col gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+                  <label className="text-[9px] sm:text-[10px] font-mono text-slate-600 font-bold uppercase tracking-widest">TINGKAT INTELEGENSI BOT</label>
+                  <div className="grid grid-cols-3 gap-1.5 sm:gap-2 bg-slate-100 border-2 border-slate-200 p-1 rounded-xl">
                     {(['easy', 'medium', 'hard'] as const).map((diff) => (
                       <button
                         key={diff}
                         onClick={() => setBotDifficulty(diff)}
-                        className={`py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
+                        className={`py-1.5 sm:py-2 rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
                           botDifficulty === diff
                             ? 'bg-brand-cyan text-white shadow-sm'
                             : 'text-slate-500 hover:text-slate-800'
@@ -357,7 +357,7 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
               <button
                 onClick={() => onAddBot(botDifficulty)}
                 disabled={!isHost || gameState.players.length >= 4}
-                className={`w-full py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider border-4 border-slate-900 shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all ${
+                className={`w-full py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-xs uppercase tracking-wider border-2 sm:border-4 border-slate-900 shadow-[2px_2px_0px_rgba(0,0,0,1)] sm:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all ${
                   isHost && gameState.players.length < 4
                     ? 'bg-brand-cyan text-white hover:bg-sky-400 hover:text-slate-900 active:translate-y-0.5'
                     : 'bg-slate-100 border-slate-300 text-slate-400 shadow-none cursor-not-allowed'
@@ -369,13 +369,13 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
           </div>
 
           {/* Action buttons (Start / Back) */}
-          <div className="flex items-center justify-between gap-4 border-t-2 border-slate-200 pt-5 mt-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-t-2 border-slate-200 pt-4 sm:pt-5 mt-2 sm:mt-4">
             <button
               onClick={() => {
                 if (onBack) onBack();
                 else window.location.reload();
               }}
-              className="px-5 py-3 rounded-2xl border-4 border-slate-900 hover:bg-slate-100 text-slate-800 font-black text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 shadow-[3px_3px_0px_#000] active:translate-y-0.5"
+              className="w-full sm:w-auto px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 sm:border-4 border-slate-900 hover:bg-slate-100 text-slate-800 font-black text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-[2px_2px_0px_#000] sm:shadow-[3px_3px_0px_#000] active:translate-y-0.5"
             >
               <ArrowLeft size={14} /> GANTI MODE
             </button>
@@ -384,7 +384,7 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
               <button
                 onClick={onStartGame}
                 disabled={gameState.players.length < 2}
-                className={`py-3.5 px-8 rounded-2xl font-black text-sm uppercase tracking-widest flex items-center gap-2 border-4 border-slate-900 shadow-[4px_4px_0px_#000] transition-all ${
+                className={`w-full sm:w-auto py-3 sm:py-3.5 px-6 sm:px-8 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm uppercase tracking-widest flex items-center justify-center gap-2 border-2 sm:border-4 border-slate-900 shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] transition-all ${
                   gameState.players.length >= 2
                     ? 'bg-brand-orange text-white hover:bg-amber-400 hover:text-slate-900 active:translate-y-0.5'
                     : 'bg-slate-100 border-slate-300 text-slate-400 shadow-none cursor-not-allowed'
@@ -393,7 +393,7 @@ export const LudoLobby: React.FC<LudoLobbyProps> = ({
                 <Play size={16} fill="currentColor" /> MULAI PERTANDINGAN!
               </button>
             ) : (
-              <div className="bg-sky-50 px-5 py-3 rounded-2xl border-2 border-brand-cyan/30 text-xs font-sans font-black text-brand-cyan uppercase tracking-wider flex items-center gap-1.5 animate-pulse">
+              <div className="bg-sky-50 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-brand-cyan/30 text-xs font-sans font-black text-brand-cyan uppercase tracking-wider flex items-center justify-center gap-1.5 animate-pulse">
                 <Info size={14} className="text-brand-cyan" />
                 MENUNGGU HOST MEMULAI MISI...
               </div>

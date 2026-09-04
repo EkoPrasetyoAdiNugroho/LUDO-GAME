@@ -308,7 +308,7 @@ export const LudoBoard: React.FC<LudoBoardProps> = ({
   }, []);
 
   return (
-    <div className="relative w-full aspect-square max-w-[500px] md:max-w-[550px] mx-auto bg-black rounded-none shadow-[10px_10px_0px_#F27D26] border-8 border-[#333] p-1.5 overflow-hidden">
+    <div className="relative w-full aspect-square max-w-[min(94vw,440px)] sm:max-w-[500px] lg:max-w-[550px] mx-auto bg-black rounded-none shadow-[6px_6px_0px_#F27D26] sm:shadow-[10px_10px_0px_#F27D26] border-4 sm:border-8 border-[#333] p-1 sm:p-1.5 overflow-hidden">
       <svg
         id="ludo-board-svg"
         viewBox={`0 0 ${BOARD_WIDTH} ${BOARD_WIDTH}`}
@@ -417,6 +417,17 @@ export const LudoBoard: React.FC<LudoBoardProps> = ({
                   className={`transition-all duration-300 ${interactive ? 'cursor-pointer' : 'pointer-events-none'}`}
                   onClick={() => interactive && onTokenClick(idx)}
                 >
+                  {/* Invisible enlarged touch hit area for mobile devices */}
+                  {interactive && (
+                    <circle
+                      cx={layout.cx}
+                      cy={layout.cy}
+                      r={Math.max(layout.r + 10, 24)}
+                      fill="transparent"
+                      className="cursor-pointer"
+                    />
+                  )}
+
                   {/* Outer Pulsing highlight (lands flat on board) */}
                   {isMovingActive && (
                     <rect

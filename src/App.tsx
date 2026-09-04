@@ -722,77 +722,79 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FFFDF6] text-slate-800 flex flex-col">
       {/* Top Navigation Control bar */}
-      <header className="bg-white border-b-4 border-slate-900 px-5 py-4 shrink-0 flex items-center justify-between shadow-sm">
-        <div className="flex items-center gap-4">
+      <header className="bg-white border-b-2 sm:border-b-4 border-slate-900 px-3 py-2 sm:px-5 sm:py-3.5 shrink-0 flex items-center justify-between shadow-sm sticky top-0 z-30">
+        <div className="flex items-center gap-2 sm:gap-4">
           <button
             onClick={handleLeaveRoom}
-            className="flex items-center gap-1.5 text-[10px] font-black font-sans uppercase tracking-wider text-slate-800 hover:bg-slate-100 border-2 border-slate-900 bg-white rounded-xl px-4 py-2 transition-all cursor-pointer shadow-[3px_3px_0px_#000] active:translate-y-0.5"
+            className="flex items-center gap-1 sm:gap-1.5 text-[9px] sm:text-[10px] font-black font-sans uppercase tracking-wider text-slate-800 hover:bg-slate-100 border-2 border-slate-900 bg-white rounded-lg sm:rounded-xl px-2.5 py-1.5 sm:px-4 sm:py-2 transition-all cursor-pointer shadow-[2px_2px_0px_#000] sm:shadow-[3px_3px_0px_#000] active:translate-y-0.5"
+            title="Keluar dari ruangan"
           >
-            <ArrowLeft size={13} className="stroke-[3]" /> KELUAR ROOM
+            <ArrowLeft size={13} className="stroke-[3]" />
+            <span className="hidden xs:inline">KELUAR</span>
           </button>
           
-          <div className="h-5 w-1 bg-slate-300" />
+          <div className="h-4 sm:h-5 w-0.5 sm:w-1 bg-slate-300" />
           
-          <div className="flex items-center gap-3">
-            <span className="text-xl font-black uppercase tracking-tight text-slate-900 font-sans">
+          <div className="flex items-center gap-1.5 sm:gap-3">
+            <span className="text-sm sm:text-xl font-black uppercase tracking-tight text-slate-900 font-sans">
               Ludo Bung AI
             </span>
-            <span className="text-[10px] bg-amber-50 border-2 border-slate-900 px-2.5 py-0.5 rounded-full text-brand-orange font-sans font-black tracking-widest">
-              {isOnlineMode ? `ROOM: ${gameState?.roomId}` : 'MODE: LOKAL'}
+            <span className="text-[8px] sm:text-[10px] bg-amber-50 border sm:border-2 border-slate-900 px-1.5 sm:px-2.5 py-0.5 rounded-full text-brand-orange font-sans font-black tracking-wider">
+              {isOnlineMode ? `ROOM: ${gameState?.roomId}` : 'LOKAL'}
             </span>
           </div>
         </div>
 
         {/* Rules and Sound controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           {/* BGM Toggle */}
           <button
             onClick={handleToggleBgm}
-            className={`p-2 border-2 transition-all cursor-pointer active:translate-y-0.5 rounded-xl ${
+            className={`p-1.5 sm:p-2 border-2 transition-all cursor-pointer active:translate-y-0.5 rounded-lg sm:rounded-xl ${
               isBgmMuted
                 ? 'border-slate-300 text-slate-400 bg-slate-50'
                 : 'border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white bg-orange-50/50'
             }`}
             title={isBgmMuted ? 'Putar Musik Latar (BGM)' : 'Matikan Musik Latar (BGM)'}
           >
-            <Music size={18} className="stroke-[2.5]" />
+            <Music size={16} className="sm:w-[18px] sm:h-[18px] stroke-[2.5]" />
           </button>
 
           {/* SFX Toggle */}
           <button
             onClick={handleToggleSfx}
-            className={`p-2 border-2 transition-all cursor-pointer active:translate-y-0.5 rounded-xl ${
+            className={`p-1.5 sm:p-2 border-2 transition-all cursor-pointer active:translate-y-0.5 rounded-lg sm:rounded-xl ${
               isSfxMuted
                 ? 'border-slate-300 text-slate-400 bg-slate-50'
                 : 'border-brand-cyan text-brand-cyan hover:bg-brand-cyan hover:text-white bg-sky-50'
             }`}
             title={isSfxMuted ? 'Aktifkan Suara Efek (SFX)' : 'Bisukan Suara Efek (SFX)'}
           >
-            {isSfxMuted ? <VolumeX size={18} className="stroke-[2.5]" /> : <Volume2 size={18} className="stroke-[2.5]" />}
+            {isSfxMuted ? <VolumeX size={16} className="sm:w-[18px] sm:h-[18px] stroke-[2.5]" /> : <Volume2 size={16} className="sm:w-[18px] sm:h-[18px] stroke-[2.5]" />}
           </button>
 
           <button
             onClick={() => setShowRulesOverlay(true)}
-            className="p-2 border-2 border-slate-900 hover:bg-slate-100 text-slate-800 bg-white rounded-xl transition-all cursor-pointer active:translate-y-0.5 shadow-[2px_2px_0px_#000]"
+            className="p-1.5 sm:p-2 border-2 border-slate-900 hover:bg-slate-100 text-slate-800 bg-white rounded-lg sm:rounded-xl transition-all cursor-pointer active:translate-y-0.5 shadow-[2px_2px_0px_#000]"
             title="Lihat Aturan"
           >
-            <HelpCircle size={18} className="stroke-[2.5]" />
+            <HelpCircle size={16} className="sm:w-[18px] sm:h-[18px] stroke-[2.5]" />
           </button>
 
           {isOnlineMode && (
-            <div className="flex items-center gap-2 bg-emerald-50 border-2 border-emerald-500 px-3 py-1.5 rounded-full">
-              <Wifi size={14} className="text-emerald-600 animate-pulse" />
-              <span className="text-[9px] font-black text-emerald-700 uppercase tracking-widest font-sans">SYNCED</span>
+            <div className="hidden xs:flex items-center gap-1.5 bg-emerald-50 border-2 border-emerald-500 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+              <Wifi size={12} className="text-emerald-600 animate-pulse" />
+              <span className="text-[8px] sm:text-[9px] font-black text-emerald-700 uppercase tracking-widest font-sans">SYNCED</span>
             </div>
           )}
         </div>
       </header>
 
-      {/* Main Grid: Board, Controls, Chat and Comments */}
+      {/* Main Grid: Responsive 1-col (Mobile), 2-col (Tablet md), 3-col (Desktop lg) */}
       {gameState && (
-        <main className="flex-1 overflow-y-auto p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-7xl mx-auto w-full">
-          {/* Column 1: Ludo Board Graphic (Grid 6/12) */}
-          <div className="lg:col-span-6 flex flex-col justify-center">
+        <main className="flex-1 overflow-y-auto p-2 sm:p-4 lg:p-6 grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 lg:gap-6 max-w-7xl mx-auto w-full">
+          {/* Column 1: Ludo Board Graphic */}
+          <div className="md:col-span-7 lg:col-span-6 flex flex-col justify-center items-center w-full">
             <LudoBoard
               gameState={gameState}
               myPlayer={myPlayer}
@@ -801,8 +803,8 @@ export default function App() {
             />
           </div>
 
-          {/* Column 2: Interactive Controls and Players panel (Grid 3/12) */}
-          <div className="lg:col-span-3 flex flex-col gap-6 justify-center">
+          {/* Column 2: Interactive Controls and Players panel */}
+          <div className="md:col-span-5 lg:col-span-3 flex flex-col gap-3 sm:gap-6 justify-center w-full">
             <GameControls
               gameState={gameState}
               myPlayer={myPlayer}
@@ -811,8 +813,8 @@ export default function App() {
             />
           </div>
 
-          {/* Column 3: Gemini Commentator & Real-Time Chats (Grid 3/12) */}
-          <div className="lg:col-span-3 flex flex-col justify-center">
+          {/* Column 3: Gemini Commentator & Real-Time Chats */}
+          <div className="col-span-1 md:col-span-12 lg:col-span-3 flex flex-col justify-center w-full">
             <GeminiCommentary
               gameState={gameState}
               myPlayer={myPlayer}
@@ -824,11 +826,11 @@ export default function App() {
 
       {/* RESTART OVERLAY BUTTON (FOR FINISHED STATE) */}
       {gameState && gameState.status === 'finished' && (
-        <div className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
+        <div className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 z-50 animate-fade-in">
           <motion.div
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-white border-4 border-slate-900 p-8 rounded-3xl shadow-[8px_8px_0px_rgba(255,127,17,1)] max-w-sm text-center flex flex-col items-center"
+            className="bg-white border-4 border-slate-900 p-5 sm:p-8 rounded-2xl sm:rounded-3xl shadow-[6px_6px_0px_rgba(255,127,17,1)] sm:shadow-[8px_8px_0px_rgba(255,127,17,1)] max-w-sm w-full text-center flex flex-col items-center max-h-[90vh] overflow-y-auto"
           >
             <div className="w-16 h-16 bg-amber-50 border-4 border-brand-orange flex items-center justify-center mb-4 rounded-2xl shadow-[4px_4px_0px_rgba(0,0,0,1)]">
               <Trophy className="w-8 h-8 text-brand-orange animate-bounce" />

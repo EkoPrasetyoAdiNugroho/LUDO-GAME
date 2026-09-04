@@ -175,13 +175,13 @@ export const GameControls: React.FC<GameControlsProps> = ({
   };
 
   return (
-    <div className="bg-white border-4 border-slate-900 rounded-3xl p-5 shadow-[6px_6px_0px_rgba(255,127,17,1)] flex flex-col gap-6">
+    <div className="bg-white border-2 sm:border-4 border-slate-900 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-[4px_4px_0px_rgba(255,127,17,1)] sm:shadow-[6px_6px_0px_rgba(255,127,17,1)] flex flex-col gap-3 sm:gap-6">
       {/* 1. SECTION: LIST OF CONTENDING PLAYERS */}
       <div>
-        <h4 className="text-sm font-sans font-black text-brand-orange uppercase tracking-widest mb-3 border-b-2 border-dashed border-slate-200 pb-2 flex items-center gap-1.5">
-          <User size={15} className="stroke-[2.5]" /> KONTESTAN LUDO
+        <h4 className="text-xs sm:text-sm font-sans font-black text-brand-orange uppercase tracking-widest mb-2 sm:mb-3 border-b-2 border-dashed border-slate-200 pb-1.5 sm:pb-2 flex items-center gap-1.5">
+          <User size={14} className="stroke-[2.5]" /> KONTESTAN LUDO
         </h4>
-        <div className="flex flex-col gap-2.5">
+        <div className="grid grid-cols-2 sm:grid-cols-1 gap-2 sm:gap-2.5">
           {players.map((p, idx) => {
             const isActive = idx === currentPlayerIndex && gameState.status === 'playing';
             const colorBg = getPlayerColorBg(p.color);
@@ -194,61 +194,61 @@ export const GameControls: React.FC<GameControlsProps> = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.2 }}
-                className={`relative flex items-center justify-between p-3 rounded-2xl border-4 transition-all ${
+                className={`relative flex items-center justify-between p-2 sm:p-3 rounded-xl sm:rounded-2xl border-2 sm:border-4 transition-all ${
                   isActive
-                    ? `bg-amber-50/40 ${borderCol} shadow-[4px_4px_0px_rgba(0,0,0,1)]`
+                    ? `bg-amber-50/60 ${borderCol} shadow-[3px_3px_0px_rgba(0,0,0,1)]`
                     : 'bg-slate-50 border-slate-200'
                 }`}
               >
                 {/* Active Indicator Glow Bar */}
                 {isActive && (
-                  <div className={`absolute left-0 top-3 bottom-3 w-1.5 rounded-r-lg ${colorBg}`} />
+                  <div className={`absolute left-0 top-2 bottom-2 w-1 sm:w-1.5 rounded-r-lg ${colorBg}`} />
                 )}
 
-                <div className="flex items-center gap-3 pl-1.5">
+                <div className="flex items-center gap-2 sm:gap-3 pl-1 min-w-0">
                   {/* Colored status box */}
-                  <div className={`w-4 h-4 rounded-full ${colorBg} border-2 border-white flex items-center justify-center shrink-0`}>
-                    <div className="w-1.5 h-1.5 bg-white rounded-full opacity-80 animate-pulse" />
+                  <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full ${colorBg} border-2 border-white flex items-center justify-center shrink-0`}>
+                    <div className="w-1 h-1 bg-white rounded-full opacity-80 animate-pulse" />
                   </div>
                   
-                  <div className="flex flex-col">
-                    <span className="text-sm font-black text-slate-800 uppercase tracking-tight flex items-center gap-1.5">
-                      {p.name}
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-xs sm:text-sm font-black text-slate-800 uppercase tracking-tight flex items-center gap-1 truncate">
+                      <span className="truncate">{p.name}</span>
                       {p.isHost && (
-                        <Shield size={12} className="text-brand-orange fill-brand-orange stroke-[2]" title="Host Lobi" />
+                        <Shield size={11} className="text-brand-orange fill-brand-orange stroke-[2] shrink-0" title="Host Lobi" />
                       )}
                       {p.isBot && (
-                        <Bot size={13} className="text-brand-cyan stroke-[2]" title="AI Computer Player" />
+                        <Bot size={11} className="text-brand-cyan stroke-[2] shrink-0" title="AI Computer Player" />
                       )}
                       {myPlayer && p.id === myPlayer.id && (
-                        <span className="text-[9px] bg-slate-900 text-white font-sans font-black px-1.5 py-0.5 rounded-full border border-slate-900">ANDA</span>
+                        <span className="text-[8px] bg-slate-900 text-white font-sans font-black px-1 py-0.2 rounded-full shrink-0">ANDA</span>
                       )}
                     </span>
                     
                     {/* Bidak Finished Tracker */}
-                    <span className="text-[11px] text-slate-500 font-sans font-bold flex items-center gap-1 uppercase tracking-wide">
-                      BIDAK FINISH: <strong className="text-slate-900 font-black">{finishedCount}/4</strong>
+                    <span className="text-[9px] sm:text-[11px] text-slate-500 font-sans font-bold flex items-center gap-1 uppercase tracking-wide">
+                      FINISH: <strong className="text-slate-900 font-black">{finishedCount}/4</strong>
                     </span>
                   </div>
                 </div>
 
-                {/* Connection Status badge */}
-                <div className="flex items-center gap-2">
+                {/* Connection Status & Turn badge */}
+                <div className="flex items-center gap-1 sm:gap-2 shrink-0">
                   {isOnlineMode && !p.isBot ? (
                     p.isOnline ? (
-                      <span className="text-brand-cyan flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest font-bold">
-                        <Wifi size={12} className="stroke-[2.5]" /> ON
+                      <span className="text-brand-cyan hidden xs:flex items-center gap-0.5 text-[9px] font-mono uppercase tracking-widest font-bold">
+                        <Wifi size={10} className="stroke-[2.5]" /> ON
                       </span>
                     ) : (
-                      <span className="text-red-500 flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest font-bold">
-                        <WifiOff size={12} className="stroke-[2.5]" /> OFF
+                      <span className="text-red-500 hidden xs:flex items-center gap-0.5 text-[9px] font-mono uppercase tracking-widest font-bold">
+                        <WifiOff size={10} className="stroke-[2.5]" /> OFF
                       </span>
                     )
                   ) : null}
 
                   {/* Turn Status overlay */}
                   {isActive && (
-                    <span className={`text-[10px] font-sans font-black uppercase tracking-widest px-2.5 py-1 rounded-xl ${colorBg} text-white shadow-sm`}>
+                    <span className={`text-[8px] sm:text-[10px] font-sans font-black uppercase tracking-widest px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg sm:rounded-xl ${colorBg} text-white shadow-sm`}>
                       GILIRAN
                     </span>
                   )}
@@ -261,17 +261,17 @@ export const GameControls: React.FC<GameControlsProps> = ({
 
       {/* 2. SECTION: INTERACTIVE DICE ROLLER */}
       {gameState.status === 'playing' && (
-        <div className="bg-amber-50/20 border-4 border-slate-900 p-5 rounded-2xl flex flex-col items-center gap-5 text-center shadow-[inset_3px_3px_0px_rgba(0,0,0,0.02)]">
+        <div className="bg-amber-50/20 border-2 sm:border-4 border-slate-900 p-3 sm:p-5 rounded-xl sm:rounded-2xl flex flex-col items-center gap-3 sm:gap-5 text-center shadow-[inset_3px_3px_0px_rgba(0,0,0,0.02)]">
           <div className="flex flex-col items-center">
-            <span className="text-xs font-sans font-black text-slate-500 uppercase tracking-widest mb-1">
+            <span className="text-[10px] sm:text-xs font-sans font-black text-slate-500 uppercase tracking-widest mb-0.5">
               DADU {currentPlayer ? `${currentPlayer.name}`.toUpperCase() : ''}
             </span>
-            <span className="text-[11px] text-brand-orange font-sans font-black uppercase tracking-wide">
+            <span className="text-[9px] sm:text-[11px] text-brand-orange font-sans font-black uppercase tracking-wide">
               {currentPlayer?.isBot ? '🤖 AI SEDANG BERPIKIR...' : 'KAMPANYEKAN DADU ANDA!'}
             </span>
           </div>
 
-          <div className="relative flex items-center justify-center h-28">
+          <div className="relative flex items-center justify-center h-22 sm:h-28">
             <AnimatePresence mode="wait">
               {isRollingLocal || isVisualRolling ? (
                 // Dice rolling animation
@@ -284,9 +284,9 @@ export const GameControls: React.FC<GameControlsProps> = ({
                     scale: [1, 1.2, 0.9, 1.1, 1],
                   }}
                   transition={{ duration: 0.8, ease: 'easeInOut' }}
-                  className="w-18 h-18 bg-white rounded-2xl shadow-[4px_4px_0px_rgba(255,127,17,0.3)] flex items-center justify-center border-4 border-brand-orange"
+                  className="w-14 h-14 sm:w-18 sm:h-18 bg-white rounded-xl sm:rounded-2xl shadow-[4px_4px_0px_rgba(255,127,17,0.3)] flex items-center justify-center border-3 sm:border-4 border-brand-orange"
                 >
-                  <Dices className={`w-10 h-10 ${currentPlayer ? getPlayerColorText(currentPlayer.color) : 'text-slate-800'} animate-pulse`} />
+                  <Dices className={`w-8 h-8 sm:w-10 sm:h-10 ${currentPlayer ? getPlayerColorText(currentPlayer.color) : 'text-slate-800'} animate-pulse`} />
                 </motion.div>
               ) : (
                 // Stationary or static dice
@@ -296,9 +296,9 @@ export const GameControls: React.FC<GameControlsProps> = ({
                   disabled={!isMyTurnToRoll() || isRollingLocal || isVisualRolling}
                   whileHover={isMyTurnToRoll() ? { scale: 1.08, rotate: 3 } : {}}
                   whileTap={isMyTurnToRoll() ? { scale: 0.95 } : {}}
-                  className={`w-18 h-18 rounded-2xl flex items-center justify-center shadow-md transition-all border-4 ${
+                  className={`w-14 h-14 sm:w-18 sm:h-18 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-md transition-all border-3 sm:border-4 ${
                     isMyTurnToRoll()
-                      ? `bg-white text-black cursor-pointer border-brand-orange shadow-[5px_5px_0px_#0EA5E9]`
+                      ? `bg-white text-black cursor-pointer border-brand-orange shadow-[3px_3px_0px_#0EA5E9] sm:shadow-[5px_5px_0px_#0EA5E9]`
                       : 'bg-slate-100 opacity-60 cursor-not-allowed border-slate-300 text-slate-400'
                   }`}
                 >
@@ -309,7 +309,7 @@ export const GameControls: React.FC<GameControlsProps> = ({
 
             {/* Glowing active border overlay on the roller area */}
             {isMyTurnToRoll() && !isRollingLocal && !isVisualRolling && (
-              <div className="absolute inset-0 -m-3 border-4 border-dashed border-brand-cyan/40 animate-pulse pointer-events-none rounded-2xl" />
+              <div className="absolute inset-0 -m-2 sm:-m-3 border-2 sm:border-4 border-dashed border-brand-cyan/40 animate-pulse pointer-events-none rounded-xl sm:rounded-2xl" />
             )}
           </div>
 
@@ -317,14 +317,14 @@ export const GameControls: React.FC<GameControlsProps> = ({
           <button
             onClick={handleRollClick}
             disabled={!isMyTurnToRoll() || isRollingLocal || isVisualRolling}
-            className={`w-full py-3.5 rounded-2xl font-black text-sm uppercase tracking-widest border-4 border-slate-900 transition-all shadow-[4px_4px_0px_rgba(0,0,0,1)] ${
+            className={`w-full py-2.5 sm:py-3.5 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm uppercase tracking-widest border-2 sm:border-4 border-slate-900 transition-all shadow-[3px_3px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_rgba(0,0,0,1)] ${
               isMyTurnToRoll()
                 ? `${getPlayerColorBg(currentPlayer.color)} text-white hover:bg-slate-900 hover:text-white hover:border-slate-900 active:translate-y-1 active:shadow-none cursor-pointer`
                 : 'bg-slate-100 border-slate-300 text-slate-400 shadow-none cursor-not-allowed'
             }`}
           >
             {isRollingLocal || isVisualRolling 
-              ? 'MENGOKOK...' 
+              ? 'MENGOCOK...' 
               : diceRolled 
                 ? 'SELESAI KOCAK' 
                 : isMyTurnToRoll() 
@@ -335,11 +335,11 @@ export const GameControls: React.FC<GameControlsProps> = ({
       )}
 
       {/* 3. GAME RUN LOG INFO PANEL */}
-      <div className="bg-sky-50 border-4 border-slate-900 p-4 rounded-2xl flex items-start gap-3 shadow-[4px_4px_0px_rgba(14,165,233,0.08)]">
-        <CircleAlert size={18} className="text-brand-orange shrink-0 mt-0.5 stroke-[2.5]" />
-        <div className="flex flex-col">
-          <span className="text-[10px] font-mono font-black text-brand-cyan uppercase tracking-widest">// LOG PERTANDINGAN //</span>
-          <p className="text-xs text-slate-700 font-sans font-bold mt-1 leading-relaxed">
+      <div className="bg-sky-50 border-2 sm:border-4 border-slate-900 p-3 sm:p-4 rounded-xl sm:rounded-2xl flex items-start gap-2.5 sm:gap-3 shadow-[2px_2px_0px_rgba(14,165,233,0.08)]">
+        <CircleAlert size={16} className="text-brand-orange shrink-0 mt-0.5 stroke-[2.5]" />
+        <div className="flex flex-col min-w-0">
+          <span className="text-[9px] sm:text-[10px] font-mono font-black text-brand-cyan uppercase tracking-widest">// LOG PERTANDINGAN //</span>
+          <p className="text-[11px] sm:text-xs text-slate-700 font-sans font-bold mt-0.5 leading-relaxed break-words">
             {gameState.lastActionDescription}
           </p>
         </div>
